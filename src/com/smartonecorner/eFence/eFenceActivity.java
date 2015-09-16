@@ -2,15 +2,17 @@ package com.smartonecorner.eFence;
 
 import android.app.Activity;
 import android.app.PendingIntent;
-import android.content.Intent;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.EditText;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
@@ -40,24 +42,20 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 	private Circle mCircle;
 	private PendingIntent mPendingIntent;
 	
+
+	private float mRadius = 20;
+	private long mExpir = 2 * 1000*60;
+	
+	private Context mContext;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_efence);
-		Button Setting_button = (Button) findViewById(R.id.setting_button);
-		init(savedInstanceState);
-		Setting_button.setOnClickListener(new OnClickListener(){
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-	        	Intent intent = new Intent(eFenceActivity.this,SettingActivity.class);  
-	        	eFenceActivity.this.startActivity(intent);
-			}
+		mContext = eFenceActivity.this;
 		
-		});
+		init(savedInstanceState);
 	}
 	
 
@@ -100,8 +98,9 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 	}
 	@Override
 	protected void onPause() {
-		mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
-		mLocationManagerProxy.removeUpdates(this);
+		/*When background the software is still running*/
+//		mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
+//		mLocationManagerProxy.removeUpdates(this);
 		mLocationManagerProxy.destroy();
 		super.onPause();
 		mMapView.onPause();
@@ -150,23 +149,56 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 		
 	}
 
+	private void setFence(LatLng  latLng, float radius, long Expr){
+		mLocationManagerProxy.addGeoFenceAlert(
+				latLng.latitude,
+				latLng.longitude, 
+				mRadius,
+				mExpir, 
+				mPendingIntent);
+		CircleOptions circleOptions = new CircleOptions();
+		circleOptions.center(latLng).radius((double)mRadius)
+				.fillColor(Color.argb(180, 224, 171, 10))
+				.strokeColor(Color.RED);
+		mCircle = mAMap.addCircle(circleOptions);
+		
+	}
+	
+	AlertButton setAlertBt(CharSequence text, OnClickListener l ){
+		AlertButton ab = new AlertButton();
+		ab.text = text;
+		ab.listener = l;
+		return ab;
+	}
+	
 	@Override
-	public void onMapClick(LatLng latLng) {
+	public void onMapClick(final LatLng latLng) {
 
 		mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
 		if (mCircle != null) {
 			mCircle.remove();
 		}
-		mLocationManagerProxy.addGeoFenceAlert(latLng.latitude,
-				latLng.longitude, 1000,
-				 1000 * 60 * 30
-				 , mPendingIntent);
-		CircleOptions circleOptions = new CircleOptions();
-		circleOptions.center(latLng).radius(1000)
-				.fillColor(Color.argb(180, 224, 171, 10))
-				.strokeColor(Color.RED);
-		mCircle = mAMap.addCircle(circleOptions);
-
+		LayoutInflater inflater = LayoutInflater.from(this);
+		View view = inflater.inflate(R.layout.dialog_radius, null);
+		final EditText et3 = (EditText) view.findViewById(R.id.radiusvalue);
+		
+	    et3.setText("20");
+	    et3.requestFocus();
+	    et3.selectAll();
+		new OpAlertDlg(mContext,"Set Radius",view,
+	      setAlertBt(mContext.getString(android.R.string.cancel), null),
+	      null,
+	      setAlertBt(mContext.getString(android.R.string.ok), new OnClickListener(){
+	
+			@Override
+			public void onClick(DialogInterface arg0, int arg1) {
+				String valuestr = et3.getText().toString().trim();
+				mRadius = Float.parseFloat(valuestr);
+				//Toast.makeText(mContext, ""+mRadius, Toast.LENGTH_SHORT).show();
+				Log.d("AAA","mRadius = " + mRadius);
+				setFence(latLng, mRadius, mExpir);
+			}
+	      })).create().show();
 	
 	}
 
@@ -183,7 +215,6 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 
 		if (amapLocation.getAMapException().getErrorCode() == 0) {
 			updateLocation(amapLocation.getLatitude(), amapLocation.getLongitude());
-
 		}
 		
 	}
