@@ -3,12 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-     <TextView
-            android:id="@+id/textView1"
+     <Button
+            android:id="@+id/setting_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="test1" 
-            android:layout_marginTop="10dp"
             />
     <com.amap.api.maps.MapView
         android:id="@+id/map"

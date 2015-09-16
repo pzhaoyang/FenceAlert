@@ -2,11 +2,15 @@ package com.smartonecorner.eFence;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
@@ -42,7 +46,18 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_efence);
+		Button Setting_button = (Button) findViewById(R.id.setting_button);
 		init(savedInstanceState);
+		Setting_button.setOnClickListener(new OnClickListener(){
+
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+	        	Intent intent = new Intent(eFenceActivity.this,SettingActivity.class);  
+	        	eFenceActivity.this.startActivity(intent);
+			}
+		
+		});
 	}
 	
 
