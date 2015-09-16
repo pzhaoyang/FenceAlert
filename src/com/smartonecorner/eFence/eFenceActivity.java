@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -12,6 +13,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.amap.api.location.AMapLocation;
@@ -54,8 +56,17 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_efence);
 		mContext = eFenceActivity.this;
-		
+		Button setting_button = (Button) findViewById(R.id.setting_button);
 		init(savedInstanceState);
+		setting_button.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+	        	Intent intent = new Intent(eFenceActivity.this,SettingActivity.class);  
+	        	eFenceActivity.this.startActivity(intent);
+			}
+		});
 	}
 	
 
