@@ -16,7 +16,7 @@
         >
        <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="31143d3d9984f241da84afb01f256c12" />
+            android:value="1a27c1ae0a0a223f80bbf28dfbb6b940" />
 
         <activity
             android:name="com.smartonecorner.eFence.eFenceActivity"
@@ -35,15 +35,15 @@
         </activity>
        <activity
             android:name=".ModificationPassword"
-            android:label="修改密码" >
+            android:label="Modify Password" >
         </activity>
          <activity
             android:name=".SettingActivity"
-            android:label="设置菜单" >
+            android:label="Setting" >
         </activity>
         
 		 <activity android:name=".PhoneAndSMSSetActivity"
-		      			android:label="内容设置">
+		      			android:label="Content Setting">
 		</activity>
  
     </application>
