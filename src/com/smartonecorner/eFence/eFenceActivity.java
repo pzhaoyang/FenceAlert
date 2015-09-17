@@ -2,19 +2,23 @@ package com.smartonecorner.eFence;
 
 import android.app.Activity;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.DialogInterface.OnClickListener;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationListener;
@@ -36,6 +40,8 @@ import com.amap.api.maps.model.MarkerOptions;
 public class eFenceActivity extends Activity implements AMapLocationListener,
 	OnMapClickListener, LocationSource {
 
+	public static final String EFENCE_BROADCAST_ACTION = "com.smartonecorner.efence.broadcast";
+	
 	private MapView mMapView;
 	private AMap mAMap;
 	private OnLocationChangedListener mListener;
@@ -49,6 +55,25 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 	private long mExpir = 2 * 1000*60;
 	
 	private Context mContext;
+	
+	private BroadcastReceiver meFenceReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			if (intent.getAction().equals(EFENCE_BROADCAST_ACTION)) {
+				Bundle bundle = intent.getExtras();
+				int status = bundle.getInt("status");
+				if (status == 0) {
+					Toast.makeText(getApplicationContext(), "Out Fence",
+							Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(getApplicationContext(), "In Fence",
+							Toast.LENGTH_SHORT).show();
+				}
+
+			}
+
+		}
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -95,11 +120,23 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 		}
 
 	}
+
+	private void RegBC(){
+		IntentFilter fliter = new IntentFilter(
+				ConnectivityManager.CONNECTIVITY_ACTION);
+		fliter.addAction(EFENCE_BROADCAST_ACTION);
+		registerReceiver(meFenceReceiver, fliter);
+		Intent intent = new Intent(EFENCE_BROADCAST_ACTION);
+		mPendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0,
+				intent, 0);
+	}
 	
 	private void init(Bundle savedInstanceState){
 		mMapView = (MapView) findViewById(R.id.map);
 		mMapView.onCreate(savedInstanceState);
 		mAMap = mMapView.getMap();
+		RegBC();
+
 		
 		mLocationManagerProxy = LocationManagerProxy.getInstance(this);
 		mLocationManagerProxy.requestLocationData(LocationProviderProxy.AMapNetwork, 2000, 1, this);
