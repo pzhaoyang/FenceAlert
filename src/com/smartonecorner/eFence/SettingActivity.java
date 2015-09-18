@@ -80,7 +80,7 @@ public class SettingActivity extends ListActivity {
 	       public TextView mTextView;                                                           
 	       public ImageView mImageView;                                                         
 	   } 
-	   private  String[] texts=new String[]{"联系人设置","登录密码修改"};
+	   private  String[] texts=new String[]{"Contact Setting","Change Password"};
 	   private int[] images=new int[]{R.drawable.ic_sms,R.drawable.ic_set};
 
 }
