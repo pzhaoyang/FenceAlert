@@ -69,6 +69,7 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 					Toast.makeText(getApplicationContext(), "In Fence",
 							Toast.LENGTH_SHORT).show();
 				}
+				Log.d("AAA","status=" + status);
 
 			}
 
@@ -149,7 +150,7 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 		/*When background the software is still running*/
 //		mLocationManagerProxy.removeGeoFenceAlert(mPendingIntent);
 //		mLocationManagerProxy.removeUpdates(this);
-		mLocationManagerProxy.destroy();
+//		mLocationManagerProxy.destroy();
 		super.onPause();
 		mMapView.onPause();
 		deactivate();
