@@ -1,5 +1,7 @@
 package com.smartonecorner.eFence;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
@@ -8,11 +10,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.DialogInterface.OnClickListener;
+import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -63,6 +67,7 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 				Bundle bundle = intent.getExtras();
 				int status = bundle.getInt("status");
 				if (status == 0) {
+					SendSMS();
 					Toast.makeText(getApplicationContext(), "Out Fence",
 							Toast.LENGTH_SHORT).show();
 				} else {
@@ -75,7 +80,20 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 
 		}
 	};
-	
+	protected void SendSMS(){
+		SharedPreferences service = eFenceActivity.this.getSharedPreferences("user_info",0);
+		String phone_number =service.getString("PHONE_NUMBER", "123456789"); 
+		String sms_content =service.getString("SMS_CONTEN", "使用者离开监控区域");
+         SmsManager smsManager = SmsManager.getDefault();
+        if(sms_content.length() > 70) {
+            List<String> contents = smsManager.divideMessage(sms_content);
+            for(String sms : contents) {
+                smsManager.sendTextMessage(phone_number, null, sms, null, null);
+            }
+        } else {
+         smsManager.sendTextMessage(phone_number, null, sms_content, null, null);
+        }	
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
