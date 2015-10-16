@@ -1,41 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
-            <TextView  
-           android:id="@+id/tv_mima"  
-           android:layout_width="wrap_content"  
-           android:layout_height="wrap_content"  
-           android:layout_marginLeft="12dip"  
-           android:layout_marginTop="10dip"  
-           android:text="Please Input Password"  
-           android:textColor="#000000"  
-           android:textSize="18sp"
-           />  
 
-      <EditText  
-           android:id="@+id/et_mima"  
-           android:layout_width="fill_parent"  
-           android:layout_height="wrap_content"  
-          android:layout_below="@id/tv_mima"  
-           android:layout_marginLeft="12dip"  
-            android:layout_marginRight="10dip"  
-          android:maxLines="200"  
-           android:password="true"  
-           />  
-            <Button  
-            android:id="@+id/btn_login"  
-            android:layout_width="wrap_content"  
-            android:layout_height="wrap_content"  
-            android:layout_below="@id/et_mima"  
-            android:layout_alignParentRight="true"  
-            android:layout_marginRight="10dip"  
-            android:gravity="center"  
-            android:text="Login"  
-            android:textColor="#000000"  
-            android:textSize="18sp"
-            /> 
-      
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/SmartOneCorner"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout3"
+        android:layout_marginTop="162dp" >
+
+        <TextView
+            android:id="@+id/tv_mima"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/et_mima"
+            android:layout_alignTop="@+id/et_mima"
+            android:layout_toLeftOf="@+id/et_mima"
+            android:gravity="center"
+            android:text="Password:"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <EditText
+            android:id="@+id/et_mima"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_login"
+            android:layout_alignParentLeft="true"
+            android:ems="10"
+            android:hint="Input Password"
+            android:m="40dp"
+            android:password="true" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/linearLayout1"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Login"
+        android:textAlignment="center"
+        android:textColor="#00AA00"
+        android:textColorHint="#FFFFFF"
+        android:textSize="24dp" />
+
+</RelativeLayout>
