@@ -23,9 +23,9 @@ public class LoginActivity extends Activity {
 		password = (EditText) findViewById(R.id.et_mima);
 		btn_login = (Button) findViewById(R.id.btn_login);
 		sp = this.getSharedPreferences("user_info", MODE_PRIVATE); 
-        if(sp.getString("PASSWORD", "123").equals(""))  
+        if(sp.getString("PASSWORD", "123456").equals(""))  
         {  
-            Toast.makeText(LoginActivity.this,"登录成功", Toast.LENGTH_SHORT).show();    
+            Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();    
             Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
             LoginActivity.this.startActivity(intent);  
             finish();  
@@ -35,15 +35,15 @@ public class LoginActivity extends Activity {
 	        public void onClick(View v) {  
 	            passwordValue = password.getText().toString();  
 	              
-	            if(passwordValue.equals(sp.getString("PASSWORD", "123")))  
+	            if(passwordValue.equals(sp.getString("PASSWORD", "123456")))  
 	            {  
-	                Toast.makeText(LoginActivity.this,"登录成功", Toast.LENGTH_SHORT).show();    
+	                Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();    
 	                Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
 	                LoginActivity.this.startActivity(intent);  
 	                finish();  
 	                  
 	            }else{                    
-	                Toast.makeText(LoginActivity.this,"密码错误，请重新输入", Toast.LENGTH_LONG).show();  
+	                Toast.makeText(LoginActivity.this,"Password Error, Please Retry!", Toast.LENGTH_LONG).show();  
 	            }  
 	              
 	        }  

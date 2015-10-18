@@ -26,6 +26,7 @@
         </activity>
          <activity
             android:name=".LoginActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,15 +36,19 @@
         </activity>
        <activity
             android:name=".ModificationPassword"
+            android:screenOrientation="portrait"
             android:label="Modify Password" >
         </activity>
          <activity
             android:name=".SettingActivity"
+            android:screenOrientation="portrait"
             android:label="Setting" >
         </activity>
         
-		 <activity android:name=".PhoneAndSMSSetActivity"
-		      			android:label="Content Setting">
+		 <activity 
+		     android:name=".PhoneAndSMSSetActivity"
+		     android:screenOrientation="portrait"
+		     android:label="Content Setting">
 		</activity>
  
     </application>
