@@ -1,88 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/RelativeLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical" >
-
-    <!-- android:background="@drawable/smartonecorner" -->
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="106dp"
-            android:text="Fence   Alert"
-            android:textSize="45sp"
-            android:textStyle="bold"
-            android:visibility="visible" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout3" >
-
-        <TextView
-            android:id="@+id/tv_mima"
-            android:layout_width="100dp"
-            android:layout_height="match_parent"
-            android:layout_alignBottom="@+id/et_mima"
-            android:layout_alignTop="@+id/et_mima"
-            android:layout_marginLeft="20dp"
-            android:layout_toLeftOf="@+id/et_mima"
-            android:gravity="center"
-            android:text="Password:"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-
-        <EditText
-            android:id="@+id/et_mima"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/btn_login"
-            android:layout_alignParentLeft="true"
-            android:layout_marginRight="20dp"
-            android:ems="10"
-            android:hint="Input Password"
-            android:password="true"
-            android:singleLine="true" >
-         	<requestFocus />
-         </EditText>
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_login"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/linearLayout1"
-        android:gravity="center"
-        android:text="Login"
-        android:textAlignment="center"
-        android:textColor="#00AA00"
-        android:textColorHint="#FFFFFF"
-        android:textSize="24dp" />
+    android:background="#ffffffff"
+    android:gravity="center_vertical">
+    <ImageView
+     android:id="@+id/iv_log"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:background="@drawable/smartonecorner" />
+    
+<TextView
+	android:id="@+id/tv_input_password"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_centerHorizontal="true"
+	 android:layout_below="@+id/iv_log"
+	android:layout_marginTop="20dp"
+	android:textSize="40dp"
+	android:textStyle="bold"
+	android:textColor="#ff000000"
+	android:text="Fence Alert"/>
+<EditText
+    android:id="@+id/et_input_password"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/tv_input_password"
+    android:layout_centerHorizontal="true"
+    android:layout_marginTop="20dp"
+    android:ems="10"
+    android:gravity="center"
+    android:inputType="textPassword" >
+</EditText>
+<LinearLayout
+	android:id="@+id/w_num_bg"
+	android:layout_width="fill_parent"
+	android:layout_height="240dp"
+	android:orientation="vertical"
+	android:layout_marginBottom="20dp"
+	android:layout_alignParentBottom="true"
+	android:layout_alignParentLeft="true">
+<LinearLayout
+        android:id="@+id/ll_small" 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1.0"
+	    android:orientation="horizontal">
+		<Button
+			android:id="@+id/w_num_1"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			 android:layout_weight="1.0"
+			 android:background="@color/login_button_selector"
+			 android:textSize="40dp"
+			android:text="1"/>
+		<Button
+			android:id="@+id/w_num_2"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="@color/login_button_selector"
+			android:textSize="40dp"
+			android:text="2" />
+		<Button
+			android:id="@+id/w_num_3"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="@color/login_button_selector"
+			android:textSize="40dp"
+			android:text="3" />
+</LinearLayout>
+<LinearLayout
+        android:id="@+id/ll_midel" 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1.0"
+	    android:orientation="horizontal">
+		<Button
+			android:id="@+id/w_num_4"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			 android:layout_weight="1.0"
+			 android:background="@color/login_button_selector"
+			 android:textSize="40dp"
+			android:text="4"/>
+		<Button
+			android:id="@+id/w_num_5"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="@color/login_button_selector"
+			android:textSize="40dp"
+			android:text="5" />
+		<Button
+			android:id="@+id/w_num_6"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="@color/login_button_selector"
+			android:textSize="40dp"
+			android:text="6" />
+</LinearLayout>
+<LinearLayout
+        android:id="@+id/ll_big" 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1.0"
+	    android:orientation="horizontal">
+		<Button
+			android:id="@+id/w_num_7"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			 android:layout_weight="1.0"
+			 android:background="@color/login_button_selector"
+			 android:textSize="40dp"
+			android:text="7"/>
+		<Button
+			android:id="@+id/w_num_8"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="@color/login_button_selector"
+			android:textSize="40dp"
+			android:text="8" />
+		<Button
+			android:id="@+id/w_num_9"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="@color/login_button_selector"
+			android:textSize="40dp"
+			android:text="9" />
+</LinearLayout>
+<LinearLayout
+        android:id="@+id/ll_o" 
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:layout_weight="1.0"
+	    android:gravity="right"
+	    android:orientation="horizontal">
+		<Button
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="#00000000"
+			android:textSize="40dp"
+			android:visibility="invisible"
+			android:text="NULL" />
+		<Button
+			android:id="@+id/w_num_0"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:background="@color/login_button_selector"
+			android:textSize="40dp"
+			android:text="0" />
+		<Button
+			android:id="@+id/w_num_del"
+			android:layout_width="fill_parent"
+			android:layout_height="fill_parent"
+			android:layout_weight="1.0"
+			android:textSize="40dp"
+			android:background="@color/login_button_selector"
+			android:text="x"/>
+</LinearLayout>
+</LinearLayout>
 
 </RelativeLayout>

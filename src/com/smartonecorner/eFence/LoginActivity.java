@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class LoginActivity extends Activity {
@@ -20,10 +21,23 @@ public class LoginActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
-		password = (EditText) findViewById(R.id.et_mima);
-		btn_login = (Button) findViewById(R.id.btn_login);
+		password = (EditText) findViewById(R.id.et_input_password);
+		password.setFocusable(false);
+		ImageView Iv_log=(ImageView)findViewById(R.id.iv_log);
+		Iv_log.getBackground().setAlpha(127);
+		Button btn_num_1 = (Button) findViewById(R.id.w_num_1);
+		Button btn_num_2 = (Button) findViewById(R.id.w_num_2);
+		Button btn_num_3 = (Button) findViewById(R.id.w_num_3);
+		Button btn_num_4 = (Button) findViewById(R.id.w_num_4);
+		Button btn_num_5 = (Button) findViewById(R.id.w_num_5);
+		Button btn_num_6 = (Button) findViewById(R.id.w_num_6);
+		Button btn_num_7 = (Button) findViewById(R.id.w_num_7);
+		Button btn_num_8 = (Button) findViewById(R.id.w_num_8);
+		Button btn_num_9 = (Button) findViewById(R.id.w_num_9);
+		Button btn_num_0 = (Button) findViewById(R.id.w_num_0);
+		Button btn_num_del = (Button) findViewById(R.id.w_num_del);
 		sp = this.getSharedPreferences("user_info", MODE_PRIVATE); 
-        if(sp.getString("PASSWORD", "123456").equals(""))  
+        if(sp.getString("PASSWORD", "1234").equals(""))  
         {  
             Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();    
             Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
@@ -31,23 +45,98 @@ public class LoginActivity extends Activity {
             finish();  
               
         }
-        btn_login.setOnClickListener(new OnClickListener() {  
+        btn_num_1.setOnClickListener(new OnClickListener() {  
 	        public void onClick(View v) {  
 	            passwordValue = password.getText().toString();  
-	              
-	            if(passwordValue.equals(sp.getString("PASSWORD", "123456")))  
-	            {  
-	                Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();    
-	                Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
-	                LoginActivity.this.startActivity(intent);  
-	                finish();  
+	            password.setText(password.getText().toString()+"1");
+	            RefreshPassword();
+	          //  if(passwordValue.equals(sp.getString("PASSWORD", "123456")))  
+	         //   {  
+	          //      Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();    
+	           //     Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
+	            //    LoginActivity.this.startActivity(intent);  
+	           //     finish();  
 	                  
-	            }else{                    
-	                Toast.makeText(LoginActivity.this,"Password Error, Please Retry!", Toast.LENGTH_LONG).show();  
-	            }  
+	         //   }else{                    
+	          //      Toast.makeText(LoginActivity.this,"Password Error, Please Retry!", Toast.LENGTH_LONG).show();  
+	          //  }  
 	              
+	        }  
+	    }); 
+        btn_num_2.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"2");	
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_3.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"3");	
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_4.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"4");	
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_5.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"5");	
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_6.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"6");
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_7.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"7");
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_8.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"8");
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_9.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"9");
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_0.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	            password.setText(password.getText().toString()+"0");	
+	            RefreshPassword();
+	        }  
+	    }); 
+        btn_num_del.setOnClickListener(new OnClickListener() {  
+	        public void onClick(View v) {  
+	        	passwordValue = password.getText().toString();  
+	        	if(!passwordValue.isEmpty())
+	        	{	
+		            password.setText(passwordValue.substring(0,passwordValue.length()-1));	
+	        	}
 	        }  
 	    }); 
 
 	}
+	private void RefreshPassword(){
+		passwordValue = password.getText().toString();  
+         if(passwordValue.equals(sp.getString("PASSWORD", "123456")))  
+          {  
+              Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();    
+              Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
+              LoginActivity.this.startActivity(intent);  
+              finish();  
+                
+          }
+	};
 }
