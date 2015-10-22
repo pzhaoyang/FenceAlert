@@ -63,7 +63,7 @@ public class SettingActivity extends ListActivity {
 
     @Override  
 	protected void onListItemClick(ListView l, View v, int position, long id) {  
-        Toast.makeText(this, "你单击了"+texts[position], Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "你单击了"+texts[position], Toast.LENGTH_SHORT).show();
         if(position==0)
         {
         	Intent intent = new Intent(SettingActivity.this,PhoneAndSMSSetActivity.class);  
