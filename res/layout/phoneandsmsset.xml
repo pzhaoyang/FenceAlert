@@ -29,30 +29,23 @@
     	<EditText
 	        android:layout_width="match_parent"
 	        android:layout_height="50dp"
+	        android:inputType="numberSigned"
 	        android:id="@+id/phone_number_editText"
         />
     </LinearLayout>
-    
-        
-    <LinearLayout 
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_marginTop="50dp">
-
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:text="Edit Msg" />
         
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sms_content_editText"
-        />
-    </LinearLayout>        
+        /> 
     <Button
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Save"
         android:id="@+id/save_save_button"
