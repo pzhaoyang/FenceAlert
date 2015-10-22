@@ -3,6 +3,7 @@ package com.smartonecorner.eFence;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -132,11 +133,49 @@ public class LoginActivity extends Activity {
 		passwordValue = password.getText().toString();  
          if(passwordValue.equals(sp.getString("PASSWORD", "123456")))  
           {  
-              Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();    
-              Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
-              LoginActivity.this.startActivity(intent);  
-              finish();  
-                
+              Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();
+              
+              //setFirstStartupStatus("");
+              if( !CheckFirstLogin() ){
+	              Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
+	              LoginActivity.this.startActivity(intent);
+              }
+              
+              finish();
           }
 	};
+	
+	private boolean CheckFirstLogin(){
+		SharedPreferences sp = getSharedPreferences("user_info",0);
+        if(!("".equals(sp.getString("FIRST_STARTUP", "")))){
+        	return false;
+        }
+        
+        startActivity(new Intent(this, PhoneAndSMSSetActivity.class));
+        return true;
+	}
+	
+    private void setFirstStartupStatus(String step){
+    	SharedPreferences sp = getSharedPreferences("user_info",0);
+    	String status;
+    	
+    	if(step.equals("")){
+    		status = sp.getString("FIRST_STARTUP", "");
+    	}else {
+    		status = step;
+    	}
+    	if(status.equals("") || status.equals("0")){
+    		startActivity(new Intent(this, PhoneAndSMSSetActivity.class));
+    	}else if(status.equals("1")){
+    		startActivity(new Intent(this, ModificationPassword.class));
+    	}else if(status.equals("2")){
+    		startActivity(new Intent(this, eFenceActivity.class));
+    	}
+    	
+    	Editor editor = sp.edit();
+        editor.putString("FIRST_STARTUP", status);
+        editor.commit();
+        
+    	finish();
+    }
 }

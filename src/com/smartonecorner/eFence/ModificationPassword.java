@@ -1,6 +1,7 @@
 package com.smartonecorner.eFence;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -45,10 +46,10 @@ public class ModificationPassword extends Activity {
                     editor.commit();
                     Toast.makeText(ModificationPassword.this,"ÃÜÂëÐÞ¸Ä³É¹¦", Toast.LENGTH_LONG).show();
                     finish();
+//                    setFirstStartupStatus("1");
 				}
 			}
 			
 		});
 	}
-
 }

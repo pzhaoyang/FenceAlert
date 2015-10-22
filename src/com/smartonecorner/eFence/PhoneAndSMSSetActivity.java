@@ -1,6 +1,7 @@
 package com.smartonecorner.eFence;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ public class PhoneAndSMSSetActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phoneandsmsset);
         service = PhoneAndSMSSetActivity.this.getSharedPreferences("user_info",0);
-        phone_number =service.getString("PHONE_NUMBER", "123456789"); 
+        phone_number =service.getString("PHONE_NUMBER", ""); 
         sms_content =service.getString("SMS_CONTEN", "使用者离开监控区域");
         phone_number_editText = (EditText) findViewById(R.id.phone_number_editText);
         phone_number_editText.setText(phone_number);
@@ -52,8 +53,10 @@ public class PhoneAndSMSSetActivity extends Activity {
 	                editor.putString("PHONE_NUMBER", phone_number);
 	                editor.putString("SMS_CONTEN", sms_content);
 	                editor.commit();
-	                finish();
 	                Toast.makeText(PhoneAndSMSSetActivity.this,"保存成功", Toast.LENGTH_SHORT).show();
+	                startActivity(new Intent(PhoneAndSMSSetActivity.this, eFenceActivity.class));
+//	                setFirstStartupStatus("0");
+	                finish();
 	            }
 	        
 
