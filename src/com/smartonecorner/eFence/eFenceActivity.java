@@ -1,5 +1,6 @@
 package com.smartonecorner.eFence;
 
+import java.text.Format.Field;
 import java.util.List;
 
 import android.app.Activity;
@@ -19,7 +20,11 @@ import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -100,6 +105,9 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_efence);
 		mContext = eFenceActivity.this;
+		
+		forceShowOverflowMenu();
+		
 		Button setting_button = (Button) findViewById(R.id.setting_button);
 		init(savedInstanceState);
 		setting_button.setOnClickListener(new View.OnClickListener() {
@@ -308,4 +316,34 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 		mLocationManagerProxy = null;
 	}
 
+	@Override  
+	  public boolean onCreateOptionsMenu(Menu menu) {  
+	    MenuInflater inflater = getMenuInflater();  
+	    inflater.inflate(R.menu.action_menu, menu);  
+	    return true;  
+	  }
+	
+	 public boolean onOptionsItemSelected(MenuItem item) {
+	        switch (item.getItemId()) {
+	        case R.id.action_settings:
+	        	Intent intent = new Intent(eFenceActivity.this,SettingActivity.class);  
+	        	eFenceActivity.this.startActivity(intent);
+	            break;
+	        }
+	        return super.onOptionsItemSelected(item);
+	    }
+	 
+	    private void forceShowOverflowMenu() {  
+	        try {  
+	            ViewConfiguration config = ViewConfiguration.get(this);  
+	            java.lang.reflect.Field menuKeyField = ViewConfiguration.class  
+	                    .getDeclaredField("sHasPermanentMenuKey");  
+	            if (menuKeyField != null) {  
+	                menuKeyField.setAccessible(true);  
+	                menuKeyField.setBoolean(config, false);  
+	            }  
+	        } catch (Exception e) {  
+	            e.printStackTrace();  
+	        }  
+	    }  
 }
