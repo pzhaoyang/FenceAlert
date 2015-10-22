@@ -147,7 +147,7 @@ public class LoginActivity extends Activity {
 	
 	private boolean CheckFirstLogin(){
 		SharedPreferences sp = getSharedPreferences("user_info",0);
-        if(!("".equals(sp.getString("FIRST_STARTUP", "")))){
+        if(!("123456789".equals(sp.getString("PHONE_NUMBER", "123456789")))){
         	return false;
         }
         
