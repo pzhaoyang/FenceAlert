@@ -68,6 +68,7 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 	private BroadcastReceiver meFenceReceiver = new BroadcastReceiver() {
 		@Override
 		public void onReceive(Context context, Intent intent) {
+			Log.i("efenceActivity", "onreceive");
 			if (intent.getAction().equals(EFENCE_BROADCAST_ACTION)) {
 				Bundle bundle = intent.getExtras();
 				int status = bundle.getInt("status");
@@ -195,7 +196,7 @@ public class eFenceActivity extends Activity implements AMapLocationListener,
 
 	protected void onDestroy() {
 		super.onDestroy();
-
+		unregisterReceiver(meFenceReceiver);
 		mMapView.onDestroy();
 
 	}
