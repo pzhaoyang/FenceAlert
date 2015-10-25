@@ -136,16 +136,16 @@ public class LoginActivity extends Activity {
               Toast.makeText(LoginActivity.this,"Login Success", Toast.LENGTH_SHORT).show();
               
               //setFirstStartupStatus("");
-              if( !CheckFirstLogin() ){
+           //   if( !CheckFirstLogin() ){
 	              Intent intent = new Intent(LoginActivity.this,eFenceActivity.class);  
 	              LoginActivity.this.startActivity(intent);
-              }
+             // }
               
               finish();
           }
 	};
 	
-	private boolean CheckFirstLogin(){
+/*	private boolean CheckFirstLogin(){
 		SharedPreferences sp = getSharedPreferences("user_info",0);
         if(!("".equals(sp.getString("FIRST_STARTUP", "")))){
         	return false;
@@ -177,5 +177,5 @@ public class LoginActivity extends Activity {
         editor.commit();
         
     	finish();
-    }
+    }*/
 }

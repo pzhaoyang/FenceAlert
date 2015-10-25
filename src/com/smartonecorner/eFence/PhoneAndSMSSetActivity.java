@@ -54,7 +54,7 @@ public class PhoneAndSMSSetActivity extends Activity {
 	                editor.putString("SMS_CONTEN", sms_content);
 	                editor.commit();
 	                Toast.makeText(PhoneAndSMSSetActivity.this,"±£´æ³É¹¦", Toast.LENGTH_SHORT).show();
-	                startActivity(new Intent(PhoneAndSMSSetActivity.this, eFenceActivity.class));
+	               // startActivity(new Intent(PhoneAndSMSSetActivity.this, eFenceActivity.class));
 //	                setFirstStartupStatus("0");
 	                finish();
 	            }
